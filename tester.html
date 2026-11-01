@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android-Tester werden – PflegeQuest</title>
+<meta name="description" content="Teste die Lern-App PflegeQuest vor allen anderen auf deinem Android-Handy.">
+<meta name="theme-color" content="#0a1628">
+<meta name="robots" content="noindex">
+<link rel="icon" href="img/icon-192.png">
+<style>
+  :root{
+    --bg:#0a1628; --panel:#11233f; --panel-2:#152a4a; --border:#1f3a5f;
+    --text:#eaf2fb; --dim:#9fb4cf; --cyan:#00d9c0; --cyan-dark:#00a896; --amber:#ffb84d;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; color:var(--text);
+    background:
+      radial-gradient(900px 620px at 18% -8%, rgba(0,217,192,.16), transparent 65%),
+      radial-gradient(760px 620px at 100% 8%, rgba(0,150,255,.10), transparent 65%),
+      var(--bg);
+    background-repeat:no-repeat;
+    font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  a{color:var(--cyan)}
+  a:focus-visible,.btn:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:8px}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 20px}
+
+  header{display:flex;align-items:center;gap:10px;padding:20px 0}
+  header img{width:36px;height:36px;border-radius:9px}
+  header strong{font-size:18px;letter-spacing:.2px}
+
+  .hero{display:grid;grid-template-columns:1fr;gap:36px;align-items:center;padding:20px 0 12px}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;
+    font-size:14px;font-weight:600;color:var(--cyan);
+    background:rgba(0,217,192,.1);border:1px solid rgba(0,217,192,.35)
+  }
+  .badge i{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+  h1{font-size:clamp(40px,10vw,64px);line-height:1.04;letter-spacing:-.02em;margin:18px 0 16px}
+  h1 span{display:block;color:var(--cyan)}
+  .lead{color:var(--dim);font-size:18px;margin:0 0 8px;max-width:34em}
+
+  .ekg{display:block;width:100%;max-width:440px;height:52px;margin:18px 0 0}
+  .ekg path{
+    fill:none;stroke:var(--cyan);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:640;stroke-dashoffset:640;animation:draw 3.2s linear infinite
+  }
+  @keyframes draw{to{stroke-dashoffset:-640}}
+
+  .phone{
+    justify-self:center;width:min(270px,72vw);padding:9px;border-radius:38px;
+    background:#050c17;border:1px solid var(--border);
+    box-shadow:0 26px 70px rgba(0,0,0,.55),0 0 60px rgba(0,217,192,.1)
+  }
+  .phone img{display:block;width:100%;height:auto;border-radius:29px}
+
+  h2{font-size:clamp(26px,5.4vw,34px);line-height:1.15;letter-spacing:-.01em;margin:48px 0 18px}
+  .steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .step{
+    display:grid;grid-template-columns:44px 1fr;gap:4px 16px;
+    padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius)
+  }
+  .num{
+    width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+    font-weight:800;font-size:20px;color:#04201d;background:var(--cyan)
+  }
+  .step h3{margin:0;font-size:20px;line-height:1.25;align-self:center}
+  .step p{grid-column:2;margin:4px 0 0;color:var(--dim)}
+  .step .action{grid-column:2;margin-top:12px}
+  .btn{
+    display:inline-block;width:100%;padding:14px 20px;border-radius:12px;text-align:center;
+    font-weight:700;text-decoration:none;color:#04201d;
+    background:linear-gradient(135deg,var(--cyan),var(--cyan-dark))
+  }
+  .btn.pending{color:var(--dim);background:var(--panel-2);border:1px dashed #2a4d75;font-weight:600}
+  .warn{color:var(--amber);font-weight:600}
+
+  .cols{display:grid;grid-template-columns:1fr;gap:14px}
+  .card{padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius)}
+  .card h2{font-size:22px;margin:0 0 8px}
+  .card p{margin:0;color:var(--dim)}
+  .card ul{margin:0;padding-left:20px;color:var(--dim)}
+  .card li+li{margin-top:6px}
+
+  footer{margin-top:44px;padding:22px 0 34px;border-top:1px solid var(--border);color:var(--dim);font-size:15px}
+
+  @media (min-width:760px){
+    .hero{grid-template-columns:1.25fr .75fr;padding-top:34px}
+    .cols{grid-template-columns:1fr 1fr}
+    .btn{width:auto;min-width:240px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .badge i{animation:none}
+    .ekg path{animation:none;stroke-dasharray:none;stroke-dashoffset:0}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="img/icon-192.png" alt="">
+    <strong>PflegeQuest</strong>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="badge"><i></i>Android-Test</span>
+        <h1>PflegeQuest <span>für Android</span></h1>
+        <p class="lead">Bevor die Lern-App fürs Pflege-Staatsexamen in den Play Store darf, muss sie 14 Tage von echten Menschen getestet werden. Sei dabei, lern nebenbei und sag mir, was dir auffällt.</p>
+        <svg class="ekg" viewBox="0 0 440 52" aria-hidden="true">
+          <path d="M0 30H120l14-14 16 30 20-44 16 40 12-12H262l14-14 16 30 20-44 16 40 12-12H440"/>
+        </svg>
+      </div>
+      <div class="phone">
+        <img src="img/app-start.png" width="640" height="1317" alt="Startbildschirm von PflegeQuest mit Level, Lernfortschritt und Stationen">
+      </div>
+    </section>
+
+    <h2>In 3 Schritten dabei</h2>
+    <ol class="steps">
+      <li class="step">
+        <span class="num">1</span>
+        <h3>Der Gruppe beitreten</h3>
+        <p>Öffne den Link am Handy, mit dem Google-Konto, das du auch im Play Store nutzt, und tippe auf „Gruppe beitreten“. Die Gruppe schaltet dich nur für den Test frei.</p>
+        <div class="action"><a class="btn" href="https://groups.google.com/g/pflegequest-tester" rel="noopener">Tester-Gruppe öffnen</a></div>
+      </li>
+      <li class="step">
+        <span class="num">2</span>
+        <h3>Beim Test anmelden</h3>
+        <p>Tippe auf der Test-Seite von Google Play auf „Tester werden“. Steht dort „nicht verfügbar“, warte ein paar Minuten und lade die Seite neu.</p>
+        <div class="action"><a class="btn" href="https://play.google.com/apps/testing/de.pflegequest.app" rel="noopener">Zur Test-Seite</a></div>
+      </li>
+      <li class="step">
+        <span class="num">3</span>
+        <h3>Installieren und drauflassen</h3>
+        <p>Installiere PflegeQuest über den Link auf der Test-Seite. <span class="warn">Bitte lass die App mindestens 14 Tage installiert</span>, das verlangt Google vor der Freigabe.</p>
+      </li>
+    </ol>
+
+    <div class="cols" style="margin-top:14px">
+      <section class="card">
+        <h2>Feedback</h2>
+        <p>Ein Fehler, eine falsche Antwort oder eine Idee? Schreib an <a href="mailto:pflegequest.lernapp@gmail.com">pflegequest.lernapp@gmail.com</a> oder nutze in Google Play „Feedback an Entwickler senden“.</p>
+      </section>
+      <section class="card">
+        <h2>Gut zu wissen</h2>
+        <ul>
+          <li>Du brauchst ein Android-Handy mit Google Play. Mit dem iPhone geht es leider nicht.</li>
+          <li>Der Test ist kostenlos.</li>
+          <li>Du brauchst kein Konto in der App. Dein Lernfortschritt bleibt auf deinem Handy.</li>
+          <li>Den Test kannst du jederzeit verlassen.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <a href="./">Datenschutz &amp; Impressum</a>
+  </footer>
+</div>
+</body>
+</html>
